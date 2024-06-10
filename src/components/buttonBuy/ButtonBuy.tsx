@@ -6,7 +6,7 @@ import Button from "../button/Button";
 import { fetchCreateOrder } from "@/helpers/fetchData";
 import { toast } from "sonner";
 
-const ButtonBuy = ({ newOrder }) => {
+const ButtonBuy = () => {
   const { isCart, isOrders, setIsOrders, setIsCart } = useCart();
   const { isUserData } = useAuth();
 
@@ -14,13 +14,13 @@ const ButtonBuy = ({ newOrder }) => {
     if (!isUserData) return;
 
     try {
-      const products = isCart.map((product) => product.id);
-      const newOrder = await fetchCreateOrder(products);
+      const products = isCart.map((product) => product.id); //obetnemos id de productos en el carrito
+      const newOrder = await fetchCreateOrder(products); //hacemos peticion POST para crear la orden
 
-      const updatedOrders = [...isOrders, newOrder];
+      const updatedOrders = [...isOrders, newOrder]; //actualizamos las lista de ordenes
       toast.success("Compra exitosa");
 
-      setIsOrders(updatedOrders);
+      setIsOrders(updatedOrders); // actuliza el estado
       localStorage.setItem("orders", JSON.stringify(updatedOrders));
 
       setIsCart([]);

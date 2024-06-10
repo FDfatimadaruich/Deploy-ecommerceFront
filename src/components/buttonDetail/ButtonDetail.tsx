@@ -16,9 +16,9 @@ const ButtonDetail = ({ product }) => {
       return;
     }
 
-    const updatedCart = [...isCart, product];
-    setIsCart(updatedCart);
     try {
+      const updatedCart = [...isCart, product];
+      setIsCart(updatedCart);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       toast.success("Producto agregado al carrito");
     } catch (error) {

@@ -58,6 +58,7 @@ export interface ICartContext {
   setIsCart: (cart: IProduct[]) => void;
   isOrders: IOrders[];
   setIsOrders: (orders: IOrders[]) => void;
+  removeCart: () => void;
 }
 
 export interface CartProviderProps {

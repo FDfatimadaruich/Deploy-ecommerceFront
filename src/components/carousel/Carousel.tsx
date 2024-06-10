@@ -31,7 +31,7 @@ export default function Carousel() {
   const [carousel, setCarousel] = useState(0);
 
   const prev = () => {
-    setCarousel((index) => (index === 0 ? slides.length - 1 : index - 1));
+    setCarousel((index) => (index === 0 ? slides.length - 1 : index - 1)); //decrementa, si llegua a 0 lo ajusta al ult. index
   };
 
   const next = () => {

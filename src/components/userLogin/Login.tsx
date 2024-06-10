@@ -17,6 +17,7 @@ export default function Login() {
   const { setIsAuthenticated, setIsUserData } = useAuth();
   const router = useRouter();
 
+  //alternar el valor entre true y false al hacer click
   const passwordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -37,9 +38,9 @@ export default function Login() {
               localStorage.setItem("user", JSON.stringify(login.user));
               setIsAuthenticated(login.token);
               setIsUserData(login.user);
-              setFormLogin(true);
               toast.success("Usuario conectado");
               resetForm();
+              setFormLogin(true);
               setTimeout(() => {
                 router.push("/products");
               }, 1000);

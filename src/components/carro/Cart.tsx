@@ -10,11 +10,11 @@ import Button from "../button/Button";
 import ButtonDelete from "../buttonDelete/ButtonDelete";
 
 export const Cart: React.FC<ICartProps> = ({ cartItems }) => {
-  const { isCart } = useCart();
+  const { isCart } = useCart(); //acceder a los productos del carrito
   const { isAuthenticated } = useAuth();
 
   const totalPrice = isCart.reduce((total, item) => total + item.price, 0);
-
+  //esto se logra iteramdo sobre los productos de isCart
   return (
     <div className="flex flex-col items-center bg-black text-white w-full p-4 ">
       {isAuthenticated ? (

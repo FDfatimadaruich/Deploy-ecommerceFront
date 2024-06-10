@@ -15,9 +15,9 @@ const categories = [
 ];
 
 export default function Category() {
-  const [carrouselCategory, setCarroueselCategory] = useState(0);
-  const [categoryPage, setCategoryPage] = useState(4);
-
+  const [carrouselCategory, setCarroueselCategory] = useState(0); //indice de categoria visible
+  const [categoryPage, setCategoryPage] = useState(4); //num. de categorias por pagina
+  // ajusta el num de categorias visibles segun el tamaño de pantalla mejorando la exp. de usuario
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 768) {
@@ -48,18 +48,21 @@ export default function Category() {
   };
 
   const getVisibleCategories = () => {
-    let start = carrouselCategory;
-    let end = carrouselCategory + categoryPage;
-
+    let start = carrouselCategory; //almacena el indice de la primer categoria visible
+    let end = carrouselCategory + categoryPage; //almacena el ultimo indice
+    //si ultime indice que se muestra es mayor a 8
     if (end > totalCategories) {
+      //se toman las categorias:
       return [
-        ...categories.slice(start, totalCategories),
-        ...categories.slice(0, end - totalCategories),
+        ...categories.slice(start, totalCategories), //desde el indice de la primer categoria visible hasta el total (8)
+        ...categories.slice(0, end - totalCategories), // y desde el inicio hasta completar el rango necesario (0, el ultimo indice que se muestra menos el total (8)
       ];
     } else {
+      //si no es mayor al total (8), se toman las categorias dentro del rango (start) a (end)
       return categories.slice(start, end);
     }
   };
+
   return (
     <div className="relative">
       <div className="overflow-hidden w-full ">

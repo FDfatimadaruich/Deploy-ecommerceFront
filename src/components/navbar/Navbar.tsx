@@ -7,10 +7,13 @@ import Search from "../search/Search";
 import { useAuth } from "../context/UseAuth";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useCart } from "../context/CartProvider";
 
 export const Navbar = () => {
   const [isMenu, setIsMenu] = useState(false);
   const { isAuthenticated, setIsAuthenticated } = useAuth();
+  const { removeCart } = useCart();
+
   const router = useRouter();
   const toggleMenu = () => {
     setIsMenu(!isMenu);
@@ -21,6 +24,7 @@ export const Navbar = () => {
     setIsAuthenticated(null);
     toast.info("Usuario desconectado");
     router.push("/");
+    removeCart();
   };
 
   return (
@@ -42,12 +46,12 @@ export const Navbar = () => {
           <ul className="flex space-x-8">
             <li className="hover-underline">
               <Link className="transition duration-700" href="/">
-                HOME
+                INICIO
               </Link>
             </li>
             <li className="hover-underline">
               <Link className="transition duration-700" href="/about">
-                ABOUT
+                SOBRE NOSOTROS
               </Link>
             </li>
             <li className="hover-underline">
@@ -69,21 +73,23 @@ export const Navbar = () => {
         </nav>
 
         <Link className="ml-6" href="/carrito">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="2em"
-            height="2em"
-            viewBox="0 0 20 20"
-          >
-            <g fill="currentColor">
-              <path
-                fillRule="evenodd"
-                d="M16.513 6H7.487A2.5 2.5 0 0 0 5.05 9.057l.913 4A2.5 2.5 0 0 0 8.401 15H15.6a2.5 2.5 0 0 0 2.437-1.943l.913-4A2.5 2.5 0 0 0 16.513 6M7.376 8.013A.5.5 0 0 1 7.487 8h9.026a.5.5 0 0 1 .487.611l-.913 4A.5.5 0 0 1 15.6 13H8.4a.5.5 0 0 1-.487-.389l-.913-4a.5.5 0 0 1 .376-.598"
-                clipRule="evenodd"
-              />
-              <path d="M3.49 2H2a1 1 0 0 1 0-2h2.29a1 1 0 0 1 .975.78l2.71 12a1 1 0 1 1-1.95.44zM10 17.25a1.75 1.75 0 1 1-3.5 0a1.75 1.75 0 0 1 3.5 0m7 0a1.75 1.75 0 1 1-3.5 0a1.75 1.75 0 0 1 3.5 0" />
-            </g>
-          </svg>
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="2em"
+              height="2em"
+              viewBox="0 0 20 20"
+            >
+              <g fill="currentColor">
+                <path
+                  fillRule="evenodd"
+                  d="M16.513 6H7.487A2.5 2.5 0 0 0 5.05 9.057l.913 4A2.5 2.5 0 0 0 8.401 15H15.6a2.5 2.5 0 0 0 2.437-1.943l.913-4A2.5 2.5 0 0 0 16.513 6M7.376 8.013A.5.5 0 0 1 7.487 8h9.026a.5.5 0 0 1 .487.611l-.913 4A.5.5 0 0 1 15.6 13H8.4a.5.5 0 0 1-.487-.389l-.913-4a.5.5 0 0 1 .376-.598"
+                  clipRule="evenodd"
+                />
+                <path d="M3.49 2H2a1 1 0 0 1 0-2h2.29a1 1 0 0 1 .975.78l2.71 12a1 1 0 1 1-1.95.44zM10 17.25a1.75 1.75 0 1 1-3.5 0a1.75 1.75 0 0 1 3.5 0m7 0a1.75 1.75 0 1 1-3.5 0a1.75 1.75 0 0 1 3.5 0" />
+              </g>
+            </svg>
+          </div>
         </Link>
         <div className="h-10 border-2 border-white mx-4"></div>
         <Link href="/profile">
@@ -126,12 +132,12 @@ export const Navbar = () => {
             <ul className="flex flex-col items-center mt-2 space-y-4">
               <li className="hover-underline">
                 <Link className="transition duration-300" href="/">
-                  HOME
+                  INICIO
                 </Link>
               </li>
               <li className="hover-underline">
                 <Link className="transition duration-300" href="/about">
-                  ABOUT
+                  SOBRE NOSOTROS
                 </Link>
               </li>
               <li className="hover-underline">

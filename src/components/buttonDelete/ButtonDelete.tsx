@@ -8,7 +8,7 @@ const ButtonDelete = ({ product }) => {
 
   const handleRemove = () => {
     try {
-      const updatedCart = isCart.filter((item) => item.id !== product);
+      const updatedCart = isCart.filter((item) => item.id !== product); //
       setIsCart(updatedCart);
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       toast.info("Producto eliminado del carrito");

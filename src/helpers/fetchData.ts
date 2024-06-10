@@ -1,5 +1,5 @@
 import { ICard } from "@/components/card/types";
-import { IOrders, IUser } from "@/components/context/type";
+import { IOrders } from "@/components/context/type";
 import { ILogin } from "@/components/userLogin/types";
 import { IRegister, IRegisterProps } from "@/components/userRegister/types";
 

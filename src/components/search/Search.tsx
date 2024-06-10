@@ -26,14 +26,12 @@ export default function Search() {
   );
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (
-      searchRef.current &&
-      !searchRef.current.contains(event.target as Node)
-    ) {
+    //verifica si el ref del componente contiene el elemento en el que se hizo click
+    if (!searchRef.current.contains(event.target as Node)) {
       setSearchText("");
     }
   };
-
+  //gestiono el evento
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -68,12 +66,7 @@ export default function Search() {
           {filterProducts.map((product) => (
             <li key={product.id}>
               {" "}
-              <Link
-                href={`/product/${product.id}`}
-                onClick={(e) => e.stopPropagation()}
-              >
-                {product.name}
-              </Link>
+              <Link href={`/product/${product.id}`}>{product.name}</Link>
             </li>
           ))}
         </ul>

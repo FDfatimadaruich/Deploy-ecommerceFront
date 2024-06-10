@@ -29,11 +29,15 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     }
   }, [isCart]);
 
-  useEffect(() => {
-    localStorage.setItem("orders", JSON.stringify(isOrders));
-  }, [isOrders]);
+  const removeCart = (): void => {
+    setIsCart([]);
+    localStorage.removeItem("cart");
+  };
+
   return (
-    <CartContext.Provider value={{ isCart, setIsCart, isOrders, setIsOrders }}>
+    <CartContext.Provider
+      value={{ isCart, setIsCart, isOrders, setIsOrders, removeCart }}
+    >
       {children}
     </CartContext.Provider>
   );

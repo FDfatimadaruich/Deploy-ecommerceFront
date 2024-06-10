@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+
 import React, { useState } from "react";
 import { ICategoryProducts } from "./types";
 import { Cards } from "../cards/Cards";
